@@ -268,32 +268,38 @@ $(document).ready(function(){
                    
             </div>
             <br>
-            <form action="<?php echo base_url(). 'register_save' ?>" method="POST">
+            <form action="<?php echo base_url(). 'register_update' ?>" method="POST">
+	              <?php foreach ($data as $row) { ?>
 	            <div class="table-title">
 	            	
 					<label for="">Name</label>
-					<input type="text" name="name" class="form-control" style="color: #000; font-size: 18px;">
+					<input type="text" name="name" class="form-control" value="<?php echo $row['name'] ?>">
+
+					<input type="hidden" name="email_old" value="<?php echo $row['email'] ?>" class="form-control">
 
 					<label for="">Username</label>
-					<input type="text" name="username" class="form-control" style="color: #000; font-size: 18px;">
+					<input type="text" name="username" value="<?php echo $row['username'] ?>" class="form-control" style="color: #000; font-size: 18px;">
 
 					<small style="color: red;">username already exist!</small><br>
 
 					<label for="">Password</label>
-					<input type="password" name="password" class="form-control" style="color: #000; font-size: 18px;">
+					<input type="password" name="password" value="<?php echo $row['password'] ?>" class="form-control" style="color: #000; font-size: 18px;">
 
 					<label for="">Email</label>
-					<input type="email" name="email" class="form-control" style="color: #000; font-size: 18px;">
+					<input type="email" name="email" value="<?php echo $row['email'] ?>" class="form-control" style="color: #000; font-size: 18px;">
 
 					<label for="">Address</label>
-					<textarea name="address" id="" cols="10" rows="4" class="form-control"></textarea>
+					<textarea name="address"  id="" cols="10" rows="4" class="form-control"><?php echo $row['address'] ?></textarea>
 
 					<label for="">Apply For</label>
 					<select name="designation" id="" class="form-control">
-						<option value="">---</option>
+						
+						<option value="<?php echo $row['designation'] ?>"><?php echo $row['designation'] ?>
 						<option value="user">User</option>
 						<option value="author">Author</option>
-						<option value="amin">Admin</option>
+						<option value="admin">Admin</option>
+						</option>
+						
 						
 					</select>
 
@@ -303,6 +309,8 @@ $(document).ready(function(){
 					<button type="submit" style="color: green;">Submit</button>
 
 	            </div>
+
+	            <?php  } ?>	
             </form>
             
         </div>

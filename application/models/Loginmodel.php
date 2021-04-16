@@ -13,13 +13,13 @@ class Loginmodel extends CI_Model {
 	{
 	 $this->db->where(array(
        'username' => $username,
-     //  'password' => $password
+       'password' => $password
 	 ));
 
-	 $data=$this->db->get('user_registers');
+	 $data=$this->db->get('registration');
      // echo '<pre>';
      // print_r($data);
-     return $data;
+      return $data->result_array();
 
 
 	}

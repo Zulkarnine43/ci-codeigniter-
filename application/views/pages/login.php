@@ -269,8 +269,10 @@ $(document).ready(function(){
             </div>
             <br>
             <!-- <form> -->
-            	<?php echo form_open(base_url() .'login_action', array()); ?>
+            	
 	            <div class="table-title">
+	            	<?php echo form_open(base_url() .'login_action', array()); ?>
+
 					<label for="">Username</label>
 					<input type="text" name="username" class="form-control" style="color: #000; font-size: 18px;">
 
@@ -285,14 +287,15 @@ $(document).ready(function(){
                     	<button type="submit" style="color: green;">Login</button>
 
 
-					<button onclick="window.location='registration.html'"  style="color: green;"><i class="fa fa-refresh"></i>Register</button>
-				
+					
+		    <?php echo form_close(); ?>
+            <!-- </form> -->
+            <a href="<?php echo base_url().'register' ?> " style="color: green;">Register</a>
+            
 
 	            </div>
-	            <?php echo form_close(); ?>
-            <!-- </form> -->
-            
-        </div>
+
+        </div>  
 
 
     </div>
