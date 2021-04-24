@@ -23,3 +23,7 @@ $route['fetch'] = 'test/get_data';
 
 
 $route['session'] = 'test/session';
+
+$route['product_form'] = 'test/product_form';
+$route['add_cart'] = 'test/add_cart';
+$route['view_cart'] = 'test/view_cart';

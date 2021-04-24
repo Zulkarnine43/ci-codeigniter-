@@ -313,6 +313,7 @@ $(document).ready(function(){
                         <td><?php echo $row['email'] ?></td>
 						<td><?php echo $row['address'] ?></td>
                         <td><?php echo $row['designation'] ?></td>
+                        <td><img src="<?php echo $row['image'] ?>"></td>
                         <td>
                             <a href="<?php echo base_url(); ?>edit_data/<?php echo $row['email'] ?>" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                             <a href="<?php echo base_url(); ?>delete_data/<?php echo $row['email'] ?>" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>

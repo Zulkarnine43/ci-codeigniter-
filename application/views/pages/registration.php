@@ -268,7 +268,7 @@ $(document).ready(function(){
                    
             </div>
             <br>
-            <form action="<?php echo base_url(). 'register_save' ?>" method="POST">
+            <form action="<?php echo base_url(). 'register_save' ?>" method="POST" enctype="multipart/form-data">
 	            <div class="table-title">
 	            	
 					<label for="">Name</label>
@@ -296,6 +296,9 @@ $(document).ready(function(){
 						<option value="amin">Admin</option>
 						
 					</select>
+
+					<label for="">Image</label>
+					<input type="file" name="image" class="form-control" style="color: #000; font-size: 18px;">
 
 					<br>
 

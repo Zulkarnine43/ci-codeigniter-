@@ -6,6 +6,7 @@ class homeController extends CI_Controller {
 public function __construct(){
 		parent::__construct();
 		$this->db = $this->load->database('default', TRUE);
+		 $this->load->library('email');
 	}
 
 		public function index()
@@ -26,6 +27,117 @@ public function __construct(){
            'address' =>$this->input->post('address'),
            'designation' =>$this->input->post('designation'),
 		);
+
+
+
+                $sdata=array();
+                $error="";
+		        $config['upload_path']          = 'image/';
+                $config['allowed_types']        = 'gif|jpg|png';
+                $config['max_size']             = 100000;
+                $config['max_width']            = 2048;
+                $config['max_height']           = 1024;
+
+                $this->load->library('upload', $config);
+
+                if ( ! $this->upload->do_upload('image'))
+                {
+                        $error =  $this->upload->display_errors();
+
+                    
+                }
+                else
+                {
+                        $sdata = $this->upload->data();
+                        
+                        $data['image']=$config['upload_path'].$sdata['file_name'];
+                }
+
+
+// Email verification Start
+    $config = Array(
+     'protocol' => 'smtp',
+     'smtp_host' => 'ssl://smtp.gmail.com',
+     'smtp_port' => '465',
+     'smtp_timeout' => '60',
+
+     'smtp_user' => 'md.shaon4100@gmail.com', // change it to yours
+     // 'smtp_pass' => 'zpqhnhmssouswukq', // change it to yours
+     'smtp_pass' => 'Sh@on599',
+     'mailtype' => 'html',
+     'charset' => 'utf-8',
+     'wordwrap' => TRUE
+  );
+
+    $email=$this->input->post('email');
+    $message=$this->input->post('designation');
+   
+   $this->load->library('email', $config);
+
+  $this->email->set_newline("\r\n");
+  // $this->email->initialize($config);
+  $this->email->from('md.shaon4100@gmail.com');
+  $this->email->to($email);  
+  $this->email->subject("Email Verification");
+  $this->email->message($message);
+  $this->email->send();
+
+
+//  $to =  $this->input->post('email');  
+
+// $config = Array(
+//         'protocol'  => 'smtp',
+//         'smtp_host' => 'smtp.gmail.com',
+//         'smtp_port' => 465,
+//         'smtp_user' => 'md.shaon4100@gmail.com',
+//         'smtp_pass' => 'Sh@on599',
+//         'mailtype'  => 'html',
+//         'charset'   => 'utf-8'
+
+//     );
+
+//     $this->load->library('email', $config);
+//     $this->email->set_newline("\r\n");
+
+//     $this->email->from('md.shaon4100@gmail.com');
+//     $this->email->to($to);
+
+//     $this->email->subject('mail from website');
+//     $this->email->message('click here');
+
+//     $this->email->send();
+
+
+    // $config['protocol']    = 'smtp';
+    // $config['smtp_host']    = 'ssl://smtp.gmail.com';
+    // $config['smtp_port']    = '465';
+    // $config['smtp_timeout'] = '60';
+
+    // $config['smtp_user']    = 'md.shaon4100@gmail.com';    //Important
+    // $config['smtp_pass']    = 'zpqhnhmssouswukq';  //Important
+
+    // $config['charset']    = 'utf-8';
+    // $config['newline']    = "\r\n";
+    // $config['mailtype'] = 'html'; // or html
+    // $config['validation'] = TRUE; // bool whether to validate email or not 
+
+     
+    // $to =  $this->input->post('email');  // User email pass here
+    // $subject = 'Welcome To ci';
+
+    // $from = 'md.shaon4100@gmail.com';  
+    // $emailContent= 'check mail'; 
+
+    // $this->email->initialize($config);
+    // $this->email->set_mailtype("html");
+    // $this->email->from($from);
+    // $this->email->to($to);
+    // $this->email->subject($subject);
+    // $this->email->message($emailContent);
+    // $this->email->send();
+
+// Email verification End
+
 
         $this->db->insert('registration',$data);
            echo "successfully added";
